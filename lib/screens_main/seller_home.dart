@@ -1,31 +1,30 @@
-import 'package:com_arc/Customer/customer_profile.dart';
 import 'package:com_arc/screens/home.dart';
-import 'package:com_arc/screens_main/seller_home.dart';
-import 'package:com_arc/screens_main/test_home.dart';
+import 'package:com_arc/screens_main/testscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../screeen_seller/seller_dashboard.dart';
 import '../screens/Category.dart';
 import '../screens/cart.dart';
 
 
-class  CustomerHome extends StatefulWidget {
-  const CustomerHome({Key? key}) : super(key: key);
+class  SellerHome extends StatefulWidget {
+  const SellerHome({Key? key}) : super(key: key);
 
   @override
-  State<CustomerHome> createState() => _CustomerHomeState();
+  State<SellerHome> createState() => _SellerHomeState();
 }
 
-class _CustomerHomeState extends State<CustomerHome> {
+class _SellerHomeState extends State<SellerHome> {
 
   int _selected_index = 0;
 
-  final List<Widget> _tabs = [
+  final List<Widget> _tabs = const[
     HomeScreen(),
-    HomeScreenAlt(),
     CategoryScreen(),
-    CartScreen(),
-    CustomerProfile(),
+    Text('Cart'),
+    SellerDashboard(),
+    Center(child:  Text('Profile')),
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,41 +33,39 @@ class _CustomerHomeState extends State<CustomerHome> {
       body: _tabs[_selected_index],
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const SellerHome()));
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>  testscreen()));
         },
-        child: const Icon(Icons.sell),
+        child: const Icon(Icons.home),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       bottomNavigationBar: BottomNavigationBar(
-
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: FaIcon(FontAwesomeIcons.houseUser),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Explore',
-          ),
-          BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.tableList),
+            icon: Icon(Icons.category),
             label: 'Category',
           ),
+          BottomNavigationBarItem(icon: FaIcon(FontAwesomeIcons.store), label: 'Store'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Cart',
+            icon: Icon(Icons.dashboard_sharp),
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
+            icon: Icon(Icons.person_pin),
+            label: 'Upload',
           ),
         ],
         currentIndex: _selected_index,
+
         type: BottomNavigationBarType.fixed,
-        selectedLabelStyle: TextStyle(fontSize: 20),
+        selectedLabelStyle: const TextStyle(fontSize: 20),
         selectedItemColor: Colors.amber[800],
-       elevation: 1,
-       // unselectedItemColor: Colors.grey[600],
+        elevation: 1,
+        // unselectedItemColor: Colors.grey[600],
         onTap: (int index) {
           setState(() {
 

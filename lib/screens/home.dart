@@ -1,3 +1,4 @@
+import 'package:com_arc/temp/Grid.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         ),
         body: const TabBarView(children: [
-          Center(child: Text('Men '),),
+          ComArcGrid(),
           Center(child: Text('Women '),),
           Center(child: Text('Child'),),
           Center(child: Text('Gadgets'),),
