@@ -2,6 +2,7 @@ import 'package:com_arc/Customer/customer_profile.dart';
 import 'package:com_arc/screens/home.dart';
 import 'package:com_arc/screens_main/seller_home.dart';
 import 'package:com_arc/screens_main/test_home.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,7 +26,7 @@ class _CustomerHomeState extends State<CustomerHome> {
     HomeScreenAlt(),
     CategoryScreen(),
     CartScreen(),
-    CustomerProfile(),
+    CustomerProfile(documentId: FirebaseAuth.instance.currentUser!.uid,),
   ];
   @override
   Widget build(BuildContext context) {

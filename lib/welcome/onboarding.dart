@@ -101,7 +101,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => login()));
                   }),
                   ComArcButton(icon: Icons.production_quantity_limits_sharp, text: 'Seller', onPressed: () {
-                    Navigator.pushReplacementNamed(context, '/seller_home');
+                    Navigator.pushReplacementNamed(context, '/seller/login');
                   }),
 
                 ],

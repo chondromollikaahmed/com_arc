@@ -12,19 +12,27 @@ final TextEditingController _emailController = TextEditingController();
 final TextEditingController _passwordController = TextEditingController();
 final TextEditingController _nameController = TextEditingController();
 
-class Register extends StatefulWidget {
+class SellerRegister extends StatefulWidget {
   @override
-  State<Register> createState() => _RegisterState();
+  State<SellerRegister> createState() => _SellerRegisterState();
 }
 
-class _RegisterState extends State<Register> {
+class _SellerRegisterState extends State<SellerRegister> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldMessengerState> _scaffoldKey = GlobalKey<ScaffoldMessengerState>();
   XFile? _image;
   dynamic _imageError;
 
   bool processing = false;
 
-  CollectionReference customers =
-      FirebaseFirestore.instance.collection('customers');
+  late String storeName;
+  late String email;
+  late String password;
+  late String storeLogo;
+  bool passwordVisible = false;
+
+  CollectionReference sellers =
+      FirebaseFirestore.instance.collection('sellers');
 
   void signUpEmailPassword() async {
     if (_formKey.currentState!.validate()) {
@@ -47,15 +55,16 @@ class _RegisterState extends State<Register> {
 
           await ref.putFile(File(_image!.path));
 
-          profileImage = await ref.getDownloadURL();
+          storeLogo = await ref.getDownloadURL();
 
-          customers.doc(userCredential.user!.uid).set({
-            'name': name,
+          sellers.doc(userCredential.user!.uid).set({
+            'storeName': storeName,
             'email': email,
-            'profileImage': profileImage,
+            'storeLogo': storeLogo,
             'phone': '',
             'address': '',
-            'cid': userCredential.user!.uid,
+            'sid': userCredential.user!.uid,
+            'coverImage': '',
           });
 
           _formKey.currentState!.reset();
@@ -63,7 +72,8 @@ class _RegisterState extends State<Register> {
             _image = null;
             processing = false;
           });
-          Navigator.pushReplacementNamed(context, '/login');
+
+          Navigator.pushReplacementNamed(context, '/seller/login');
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {
             CA_SnackBar.showSnackBar(
@@ -106,19 +116,7 @@ class _RegisterState extends State<Register> {
     }
   }
 
-  late String name;
 
-  late String email;
-
-  late String password;
-
-  late String profileImage;
-
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldMessengerState> _scaffoldKey =
-      GlobalKey<ScaffoldMessengerState>();
-
-  bool passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +143,7 @@ class _RegisterState extends State<Register> {
                         onTap: () {
                           Navigator.pushReplacementNamed(context, '/');
                         },
-                        child: Padding(
+                        child: const Padding(
                           padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
                           child: Icon(
                             Icons.home_filled,
@@ -154,7 +152,7 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
-                      Expanded(
+                      const Expanded(
                         flex: 1,
                         child: Text(
                           "Home",
@@ -168,7 +166,7 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
-                      Text(
+                      const Text(
                         "Sign Up",
                         textAlign: TextAlign.start,
                         overflow: TextOverflow.clip,
@@ -183,13 +181,13 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.fromLTRB(0, 150, 0, 0),
-                  padding: EdgeInsets.all(0),
+                  margin: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+                  padding: const EdgeInsets.all(0),
                   height: MediaQuery.of(context).size.height,
                   decoration: BoxDecoration(
                     color: Color(0xffffffff),
                     shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(32.0),
                         topRight: Radius.circular(32.0)),
                     border: Border.all(color: Color(0x4d9e9e9e), width: 1),
@@ -206,11 +204,11 @@ class _RegisterState extends State<Register> {
                           children: [
                             TextFormField(
                               onChanged: (value) {
-                                name = value;
+                                storeName = value;
                               },
                               validator: (value) {
                                 if (value!.isEmpty) {
-                                  return 'Please enter Your Name';
+                                  return 'Please enter Store Name';
                                 }
                                 return null;
                               },
@@ -218,7 +216,7 @@ class _RegisterState extends State<Register> {
                               obscureText: false,
                               textAlign: TextAlign.start,
                               maxLines: 1,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontStyle: FontStyle.normal,
                                 fontSize: 14,
@@ -240,14 +238,14 @@ class _RegisterState extends State<Register> {
                                   borderSide: BorderSide(
                                       color: Color(0xff000000), width: 1),
                                 ),
-                                labelText: "User Name",
+                                labelText: "Store Name",
                                 labelStyle: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,
                                   fontSize: 16,
                                   color: Color(0xff000000),
                                 ),
-                                hintText: "chondromollika.ahmed.9",
+                                hintText: "ca store",
                                 hintStyle: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontStyle: FontStyle.normal,

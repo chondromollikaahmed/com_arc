@@ -11,22 +11,29 @@ import 'package:com_arc/screens/cart.dart';
 import 'package:com_arc/screens/home.dart';
 import 'package:com_arc/screens_main/customer_home.dart';
 import 'package:com_arc/screens_main/seller_home.dart';
+import 'package:com_arc/seller/seller_login.dart';
+import 'package:com_arc/seller/seller_register.dart';
 import 'package:com_arc/temp/About.dart';
 import 'package:com_arc/temp/CustomerSetting.dart';
 import 'package:com_arc/temp/ForgotPassword.dart';
 import 'package:com_arc/temp/ProductDetails.dart';
 import 'package:com_arc/temp/verificationOTP.dart';
 import 'package:com_arc/welcome/Register.dart';
-import 'package:com_arc/welcome/customer_login.dart';
-import 'package:com_arc/welcome/customer_signup.dart';
 import 'package:com_arc/welcome/login.dart';
 import 'package:com_arc/welcome/onboarding.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'chondro/cgj.dart';
 
 
-void main() => runApp(const MyApp());
+void main() async
+{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+runApp(const MyApp());
+}
 
 
 class MyApp extends StatelessWidget {
@@ -40,14 +47,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => OnboardingWidget(),
-        '/customer_signup': (context) => CustomerRegister(),
         '/login': (context) =>login(),
-        '/seller_login': (context) => login(),
         '/customer_home': (context) =>const  CustomerHome(),
         '/seller_home': (context) => const SellerHome(),
         '/register': (context) => Register(),
 
-
+        '/seller/login': (context) =>SellerLogin(),
+        '/seller/register': (context) =>SellerRegister(),
         '/seller/mystore': (context) => const MyStore(),
         '/seller/orders': (context) => const Orders(),
         '/seller/editprofile': (context) => const EditProfile(),
@@ -66,6 +72,7 @@ class MyApp extends StatelessWidget {
     '/otp':(context) =>  verificationOTP(),
     '/customer/setting':(context) =>  CustomerSetting(),
     '/support':(context) =>  About(),
+
       },
       debugShowCheckedModeBanner: false,
     );

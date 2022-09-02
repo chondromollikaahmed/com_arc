@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "147590024262",
+    "project_id": "comarc-57e43",
+    "storage_bucket": "comarc-57e43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147590024262:android:841828f9cc894b9a2d4e47",
+        "android_client_info": {
+          "package_name": "com.ca.comarc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147590024262-m9jjs0239p7eh90ep7dlcijca5qmovoj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ca.comarc",
+            "certificate_hash": "c5e9c3c4b87cd2a404dfbdb119a8af9328a199e7"
+          }
+        },
+        {
+          "client_id": "147590024262-oga3cd3kavt2qmcg2ouusnhfcqffpbhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8cUFrgW09DltvgvCFZvRgf5M_piDKuTU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147590024262-oga3cd3kavt2qmcg2ouusnhfcqffpbhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
