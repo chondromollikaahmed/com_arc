@@ -137,7 +137,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       child: PageView.builder(
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
-          return SubCategory(categoryName: items[index].label,
+          return SubCategory(categoryName: category[index],
             subLists: combined[index],
             imageSuffix: items[index].image,);
         },

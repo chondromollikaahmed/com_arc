@@ -28,27 +28,14 @@ List<String> homeGarden = [
   'kitchen',
   'bathroom',
   'furniture',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
+  'other'
 ];
 
 List<String> shoes = [
   'sneakers',
   'boots',
   'slippers',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
+  'other'
 ];
 
 List<String> beauty = [
@@ -56,26 +43,21 @@ List<String> beauty = [
   'perfume',
   'skin care',
   'other',
-  'other',
+  'other'
 ];
 
 List<String> accessories = [
   'belts',
   'gloves',
   'scarves',
-  'other',
-  'other',
-  'other',
-  'other',
+  'other'
 ];
 
 
 List<String> bags = [
   'handbag',
   'backpack',
-  'other',
-  'other',
-  'other',
+  'other'
 ];
 
 
@@ -88,11 +70,7 @@ List<String> kids = [
   'pants',
   'coat',
   'jacket',
-  'other',
-  'other',
-  'other',
-  'other',
-  'other',
+  'other'
 ];
 
 
@@ -114,3 +92,6 @@ List<String> electronics= [
   'gaming',
   'other',
 ];
+
+
+List<String> category =['men','women','kids','homeGarden','shoes','beauty','accessories','bags','electronics'];

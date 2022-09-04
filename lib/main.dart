@@ -1,12 +1,15 @@
 import 'package:com_arc/Customer/components/orders.dart';
 import 'package:com_arc/Customer/components/wishlist.dart';
 import 'package:com_arc/customs/com_arc_customs.dart';
+import 'package:com_arc/provider/cart_provider.dart';
+import 'package:com_arc/provider/wishlist_provider.dart';
 import 'package:com_arc/screeen_seller/Components/Balances.dart';
 import 'package:com_arc/screeen_seller/Components/EditProfile.dart';
 import 'package:com_arc/screeen_seller/Components/ManageProduct.dart';
 import 'package:com_arc/screeen_seller/Components/MyStore.dart';
 import 'package:com_arc/screeen_seller/Components/Orders.dart';
 import 'package:com_arc/screeen_seller/Components/Statics.dart';
+import 'package:com_arc/screeen_seller/seller_store_details.dart';
 import 'package:com_arc/screens/cart.dart';
 import 'package:com_arc/screens/home.dart';
 import 'package:com_arc/screens_main/customer_home.dart';
@@ -21,8 +24,11 @@ import 'package:com_arc/temp/verificationOTP.dart';
 import 'package:com_arc/welcome/Register.dart';
 import 'package:com_arc/welcome/login.dart';
 import 'package:com_arc/welcome/onboarding.dart';
+import 'package:com_arc/welcome/welcomeCA.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'chondro/cgj.dart';
 
@@ -32,7 +38,14 @@ void main() async
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-runApp(const MyApp());
+runApp(MultiProvider(
+  
+  providers: [
+    ChangeNotifierProvider(create: (_) => Cart()),
+    ChangeNotifierProvider(create: (_) => WishList()),
+  ],
+
+    child: const MyApp()));
 }
 
 
@@ -44,9 +57,10 @@ class MyApp extends StatelessWidget {
     return   MaterialApp(
 
       //home : OnboardingWidget(),
-      initialRoute: '/',
+      initialRoute: '/ca',
       routes: {
         '/': (context) => OnboardingWidget(),
+        '/ca': (context) =>  welcomeCA(),
         '/login': (context) =>login(),
         '/customer_home': (context) =>const  CustomerHome(),
         '/seller_home': (context) => const SellerHome(),
@@ -55,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/seller/login': (context) =>SellerLogin(),
         '/seller/register': (context) =>SellerRegister(),
         '/seller/mystore': (context) => const MyStore(),
+        '/seller_store': (context) =>  SellerStoreDetails(sellerId: FirebaseAuth.instance.currentUser!.uid,),
         '/seller/orders': (context) => const Orders(),
         '/seller/editprofile': (context) => const EditProfile(),
         '/seller/manageproduct': (context) => const ManageProducts(),
@@ -68,7 +83,7 @@ class MyApp extends StatelessWidget {
         '/customer/forgot': (context) =>  ForgotPassword(),
 
     '/customer/home':(context) => const HomeScreen(),
-    '/customer/details':(context) =>  ProductDetails(),
+   // '/customer/details':(context) =>  ProductDetails(),
     '/otp':(context) =>  verificationOTP(),
     '/customer/setting':(context) =>  CustomerSetting(),
     '/support':(context) =>  About(),

@@ -239,31 +239,7 @@ class _SellerLoginState extends State<SellerLogin> {
                                         MediaQuery.of(context).size.width * 0.5,
                                   ),
                           ),
-                          MaterialButton(
-                            onPressed: () {
-                              FirebaseAuth.instance.signInAnonymously();
 
-                              Navigator.pushReplacementNamed(
-                                  context, '/customer_home');
-                            },
-                            color: Color(0xff3e3e44),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24.0),
-                            ),
-                            padding: EdgeInsets.all(16),
-                            child: Text(
-                              "Continue As Guest",
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                fontStyle: FontStyle.normal,
-                              ),
-                            ),
-                            textColor: Color(0xffffffff),
-                            height: 50,
-                            minWidth: MediaQuery.of(context).size.width * 0.5,
-                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(

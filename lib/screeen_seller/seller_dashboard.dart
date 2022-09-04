@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -28,7 +29,7 @@ class _SellerDashboardState extends State<SellerDashboard> {
   Widget build(BuildContext context) {
 
     List<Function()> listOfFunctions =[
-      ()=>Navigator.pushNamed(context, '/seller/mystore'),
+      ()=>Navigator.pushNamed(context, '/seller_store'),
       ()=>Navigator.pushNamed(context, '/seller/orders'),
       ()=>Navigator.pushNamed(context, '/seller/editprofile'),
       ()=>Navigator.pushNamed(context, '/seller/manageproduct'),
@@ -44,7 +45,8 @@ class _SellerDashboardState extends State<SellerDashboard> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pushReplacementNamed(context, '/');
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, '/seller/login');
               },
               icon: const FaIcon(
                 FontAwesomeIcons.arrowRightFromBracket,

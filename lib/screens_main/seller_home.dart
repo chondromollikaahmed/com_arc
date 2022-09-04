@@ -1,5 +1,7 @@
+import 'package:com_arc/screeen_seller/seller_store.dart';
 import 'package:com_arc/screens/home.dart';
 import 'package:com_arc/screens_main/testscreen.dart';
+import 'package:com_arc/seller/upload_product.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -22,22 +24,15 @@ class _SellerHomeState extends State<SellerHome> {
   final List<Widget> _tabs = const[
     HomeScreen(),
     CategoryScreen(),
-    Text('Cart'),
+    SellerStore(),
     SellerDashboard(),
-    Center(child:  Text('Profile')),
+    UploadProduct(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: _tabs[_selected_index],
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>  testscreen()));
-        },
-        child: const Icon(Icons.home),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

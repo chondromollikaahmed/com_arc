@@ -51,7 +51,7 @@ class _SellerRegisterState extends State<SellerRegister> {
           CA_SnackBar.showSnackBar(_scaffoldKey, "User Created Successfully");
 
           Reference ref =
-              FirebaseStorage.instance.ref('/cust_images/$email.jpg');
+              FirebaseStorage.instance.ref('/seller_images/$email.jpg');
 
           await ref.putFile(File(_image!.path));
 
@@ -454,7 +454,7 @@ class _SellerRegisterState extends State<SellerRegister> {
                                   InkWell(
                                     onTap: () {
                                       Navigator.pushReplacementNamed(
-                                          context, '/login');
+                                          context, '/seller/login');
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.fromLTRB(8, 0, 0, 0),
